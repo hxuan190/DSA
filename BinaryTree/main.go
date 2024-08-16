@@ -41,5 +41,5 @@ func main() {
 	root.left.right = &Node{data: 5}
 
 	fmt.Println("Inorder Traversal of Binary Tree:")
-	postorderTraversal(root)
+	inorderTraversal(root)
 }

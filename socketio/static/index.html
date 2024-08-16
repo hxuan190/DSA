@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realtime Notifications</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #notifications {
+            list-style-type: none;
+            padding: 0;
+        }
+        #notifications li {
+            padding: 8px;
+            margin-bottom: 4px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<h1>Realtime Notifications with Socket.io and Golang</h1>
+<ul id="notifications"></ul>
+
+<script>
+    // Kết nối tới server Socket.io
+    var socket = io();
+
+    // Khi nhận được thông báo từ server, thêm thông báo vào danh sách
+    socket.on('notification', function(msg) {
+        var item = document.createElement('li');
+        item.textContent = msg;
+        document.getElementById('notifications').appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    // Ví dụ: Gửi một yêu cầu thông báo từ client đến server
+    setTimeout(function() {
+        socket.emit('send notification', 'Client requested a notification');
+    }, 5000); // Gửi sau 5 giây
+</script>
+</body>
+</html>
