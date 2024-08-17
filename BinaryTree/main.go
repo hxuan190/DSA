@@ -52,6 +52,32 @@ func searchNode(root *Node, data int) *Node {
 	}
 	return searchNode(root.right, data)
 }
+func deleteNode(root *Node, data int) *Node {
+	if root == nil {
+		return root
+	}
+	if data < root.value {
+		root.left = deleteNode(root.left, data)
+	} else if data > root.value {
+		root.right = deleteNode(root.right, data)
+	} else {
+		if root.left == nil {
+			return root.right
+		} else if root.right == nil {
+			return root.left
+		}
+		minLargerNode := findMinNode(root.right)
+		root.value = minLargerNode.value
+		root.right = deleteNode(root.right, minLargerNode.value)
+	}
+	return root
+}
+func findMinNode(root *Node) *Node {
+	for root.left != nil {
+		root = root.left
+	}
+	return root
+}
 
 func main() {
 	// Tạo các node của cây
