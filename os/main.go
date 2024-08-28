@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-	// Ghi nội dung vào file
 	file, err := os.Create("example.txt")
 	if err != nil {
 		fmt.Println("Error creating file:", err)
