@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/fsnotify/fsnotify"
 	"time"
 
 	"github.com/spf13/viper"
