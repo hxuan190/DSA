@@ -28,5 +28,5 @@ func main() {
 	stringStack := Stack[string]{}
 	stringStack.Push("Hello")
 	stringStack.Push("World")
-	fmt.Println(stringStack.Pop()) // Output: World
+	fmt.Println(stringStack.Pop())
 }
