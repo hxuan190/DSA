@@ -12,7 +12,6 @@ func (s *Stack[T]) Push(v T) {
 	s.elements = append(s.elements, v)
 }
 
-// Phương thức Pop lấy phần tử từ Stack
 func (s *Stack[T]) Pop() T {
 	lastIndex := len(s.elements) - 1
 	element := s.elements[lastIndex]
