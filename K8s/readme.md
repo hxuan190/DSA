@@ -43,3 +43,12 @@
 10. Kubelet
 
     Kubelet là một thành phần chạy trên mỗi worker node, chịu trách nhiệm giao tiếp giữa master node và worker node, đảm bảo rằng các container trong Pod đang chạy.
+
+Cách bắt đầu với Kubernetes:
+
+    Cài đặt Minikube: Công cụ này giúp bạn tạo ra một cluster Kubernetes đơn giản để học và thử nghiệm trên máy cá nhân.
+    Sử dụng kubectl: Đây là công cụ dòng lệnh để quản lý cluster Kubernetes.
+        Các lệnh cơ bản:
+            kubectl get pods: Liệt kê các Pod đang chạy.
+            kubectl apply -f <file.yaml>: Áp dụng file cấu hình YAML để tạo các tài nguyên trong Kubernetes.
+            kubectl describe pod <pod_name>: Xem chi tiết về một Pod.
