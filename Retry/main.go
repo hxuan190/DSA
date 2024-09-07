@@ -20,6 +20,7 @@ func main() {
 	expBackoff.InitialInterval = 500 * time.Millisecond // Khoảng thời gian ban đầu
 	expBackoff.MaxInterval = 5 * time.Second            // Khoảng thời gian chờ tối đa giữa các lần retry
 	expBackoff.MaxElapsedTime = 15 * time.Second        // Tổng thời gian retry tối đa
+	expBackoff.RandomizationFactor = 0.5                // Ngẫu nhiên trong khoảng +/- 50%
 
 	// Hàm retry
 	operation := func() error {
