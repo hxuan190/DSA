@@ -1,54 +1,52 @@
-1. Cluster
+### Repository for the K8s in 1 hour video
 
-   Cluster là nhóm các máy chủ (nodes) mà Kubernetes quản lý. Mỗi cluster gồm ít nhất một master node (điều khiển) và nhiều worker nodes (nơi các ứng dụng chạy).
+#### K8s manifest files
+* mongo-config.yaml
+* mongo-secret.yaml
+* mongo.yaml
+* webapp.yaml
 
-2. Node
+#### K8s commands
 
-   Node là một máy chủ vật lý hoặc ảo trong cluster Kubernetes, nơi các ứng dụng được chạy. Có hai loại node:
-   Master Node: Quản lý toàn bộ cluster, bao gồm lịch trình Pods, cập nhật trạng thái cluster, và xử lý các hoạt động như scale, load balancing.
-   Worker Node: Nơi chứa các container ứng dụng trong các Pods.
+##### start Minikube and check status
+    minikube start --vm-driver=hyperkit 
+    minikube status
 
-3. Pod
+##### get minikube node's ip address
+    minikube ip
 
-   Pod là đơn vị triển khai nhỏ nhất trong Kubernetes. Mỗi Pod chứa một hoặc nhiều container và chia sẻ chung mạng, không gian lưu trữ.
-   Pod thường là wrapper xung quanh một hoặc nhiều container, thường được sử dụng để chạy các ứng dụng đơn lẻ hoặc liên quan.
+##### get basic info about k8s components
+    kubectl get node
+    kubectl get pod
+    kubectl get svc
+    kubectl get all
 
-4. Service
+##### get extended info about components
+    kubectl get pod -o wide
+    kubectl get node -o wide
 
-   Service cung cấp một cách tiếp cận để truy cập vào các Pod, giúp quản lý việc load balancing và duy trì IP tĩnh cho các Pod. Một Service có thể:
-   Định tuyến các yêu cầu đến một nhóm Pod cụ thể.
-   Cung cấp một điểm truy cập cố định cho các Pod, ngay cả khi Pods bị xóa hoặc tái triển khai.
+##### get detailed info about a specific component
+    kubectl describe svc {svc-name}
+    kubectl describe pod {pod-name}
 
-5. Deployment
+##### get application logs
+    kubectl logs {pod-name}
 
-   Deployment là cách quản lý và kiểm soát việc triển khai ứng dụng trong Kubernetes. Nó giúp kiểm soát số lượng bản sao (replicas) của Pod, triển khai bản cập nhật mới và đảm bảo rằng ứng dụng luôn ở trạng thái hoạt động.
+##### stop your Minikube cluster
+    minikube stop
 
-6. Namespace
+<br />
 
-   Namespace cung cấp một cơ chế để chia cluster Kubernetes thành nhiều không gian logic độc lập, giúp dễ dàng quản lý tài nguyên và môi trường khác nhau.
+> :warning: **Known issue - Minikube IP not accessible**
 
-7. ConfigMap và Secret
+If you can't access the NodePort service webapp with `MinikubeIP:NodePort`, execute the following command:
 
-   ConfigMap: Lưu trữ các cấu hình không bí mật, có thể truyền vào các container dưới dạng biến môi trường hoặc file cấu hình.
-   Secret: Lưu trữ thông tin nhạy cảm như mật khẩu, khóa API và cung cấp chúng một cách an toàn cho Pods.
+    minikube service webapp-service
 
-8. Ingress
+<br />
 
-   Ingress giúp cấu hình các quy tắc định tuyến HTTP và HTTPS để cung cấp truy cập bên ngoài vào các dịch vụ trong cluster Kubernetes.
-
-9. Volume
-
-   Volume là cơ chế lưu trữ dữ liệu cho container, giúp giữ lại dữ liệu ngay cả khi container dừng. Kubernetes cung cấp nhiều loại volume như emptyDir, hostPath, PersistentVolume, và PersistentVolumeClaim.
-
-10. Kubelet
-
-    Kubelet là một thành phần chạy trên mỗi worker node, chịu trách nhiệm giao tiếp giữa master node và worker node, đảm bảo rằng các container trong Pod đang chạy.
-
-Cách bắt đầu với Kubernetes:
-
-    Cài đặt Minikube: Công cụ này giúp bạn tạo ra một cluster Kubernetes đơn giản để học và thử nghiệm trên máy cá nhân.
-    Sử dụng kubectl: Đây là công cụ dòng lệnh để quản lý cluster Kubernetes.
-        Các lệnh cơ bản:
-            kubectl get pods: Liệt kê các Pod đang chạy.
-            kubectl apply -f <file.yaml>: Áp dụng file cấu hình YAML để tạo các tài nguyên trong Kubernetes.
-            kubectl describe pod <pod_name>: Xem chi tiết về một Pod.
+#### Links
+* mongodb image on Docker Hub: https://hub.docker.com/_/mongo
+* webapp image on Docker Hub: https://hub.docker.com/repository/docker/nanajanashia/k8s-demo-app
+* k8s official documentation: https://kubernetes.io/docs/home/
+* webapp code repo: https://gitlab.com/nanuchi/developing-with-docker/-/tree/feature/k8s-in-hour
