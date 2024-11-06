@@ -24,6 +24,7 @@ func postorderTraversal(root *Node) {
 		fmt.Printf("%d ", root.value)
 	}
 }
+
 func preorderTraversal(root *Node) {
 	if root != nil {
 		fmt.Printf("%d ", root.value)
